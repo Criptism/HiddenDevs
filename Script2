@@ -1,0 +1,493 @@
+local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+
+
+
+local function Joined()
+
+    gamePlace=nil
+
+    BoxingSimulator2Strength=nil
+
+    local playerList=game:GetService("Players")
+
+    local player=playerList.LocalPlayer
+
+    local playerName=player.Name
+
+    local playerDisplay=player.DisplayName
+
+    local userId=tostring(player.UserId)
+
+    local gameID=game.PlaceId
+
+    if gameID==2888719930 then
+
+        BoxingSimulator2Strength=game:GetService("ReplicatedStorage").Data[playerName].Strength.Value
+
+    else
+
+        player:Kick("Unsupported Game: To Find Out Games We Support Join Our Discord | Copied")
+
+        setclipboard("https://discord.gg/PM6BDXEfBm")
+
+    end
+
+    local url = "Webhook Here"
+
+    local data = {
+
+        ["content"] = " **Premium Script Executed**",
+
+        ["embeds"] = {
+
+            {
+
+                ["title"] = "**Moon Chicory Premium** | Executed by: "..playerName,
+
+                ["type"] = "rich",
+
+                ["color"] = tonumber(0xff8000),
+
+                ["fields"] = {
+
+                    {
+
+                        ["name"] = "Username: "..playerName,
+
+                        ["value"] = playerDisplay..'\n'..playerName..'\n'.."User ID: "..userId..'\n\n'.."Game: "..GameName..'\n'..(BoxingSimulator2Strength and'User Strength: '..BoxingSimulator2Strength or''),
+
+                        ["inline"] = true
+
+                    }
+
+                },
+
+                ["image"] = {
+
+                    ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" .. playerDisplay
+
+                }
+
+            }
+
+        }
+
+    }
+
+    local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+
+
+    local headers = {
+
+        ["content-type"] = "application/json"
+
+    }
+
+    request = http_request or request or HttpPost or syn.request
+
+    local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+
+    request(abcdef)
+
+end
+
+local plr = game.Players.LocalPlayer
+
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/zxciaz/VenyxUI/main/Reuploaded"))()
+
+local venyx = library.new("Moon Chicory! | "..GameName.." | Premium", 5013109572)
+
+
+
+local themes = {
+
+    Background = Color3.fromRGB(86, 144, 255),
+
+    Glow = Color3.fromRGB(0, 0, 0),
+
+    Accent = Color3.fromRGB(10, 10, 10),
+
+    LightContrast = Color3.fromRGB(20, 20, 20),
+
+    DarkContrast = Color3.fromRGB(14, 14, 14),  
+
+    TextColor = Color3.fromRGB(0,0,128)
+
+}
+
+
+
+local page = venyx:addPage("Farming", 5012544693)
+
+local section1 = page:addSection("Farming!")
+
+section1:addToggle("Equip DW", nil, function(state)
+
+    print("Toggled", state)
+
+    if state then
+
+        print("Toggle On")
+
+	_G.Equip = true
+
+	while _G.Equip do
+
+		wait()
+
+		for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+
+			if v.Name == "Double Weight" then
+
+				v.Parent = game.Players.LocalPlayer.Character
+
+			end
+
+		end
+
+	end
+
+    else
+
+        print("Toggle Off")
+
+	_G.Equip = false
+
+end
+
+end)
+
+
+
+section1:addToggle("Farm DW", nil, function(state)
+
+    print("Toggled", state)
+
+    if state then
+
+        print("Toggle On")
+
+        _G.Farm = true
+
+        while _G.Farm do
+
+            wait(0.6)
+
+            for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+
+                if v.Name == "Double Weight" then v:Activate() end
+
+            end
+
+        end
+
+        else
+
+            print("Toggle Off")
+
+            _G.Farm = false
+
+        end
+
+end)
+
+
+
+section1:addToggle("Lock Player", nil, function(state)
+
+    print("Toggled", state)
+
+    print(state)
+
+    if state then
+
+        for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+
+            if v:IsA('Part') then v.Anchored = true
+
+            end
+
+        end
+
+    else
+
+        for i, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+
+            if v:IsA('Part') then v.Anchored = false
+
+            end
+
+        end
+
+    end
+
+end)
+
+
+
+section1:addButton("Weight Counter", function()
+
+    print("Clicked")
+
+       loadstring(game:HttpGet("https://pastebin.com/raw/AfrXkv3g"))()
+
+end)
+
+
+
+section1:addButton("Gained", function()
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Auberon-Coding/Roblox-Scripts/main/Gained"))()
+
+end)
+
+
+
+section1:addButton("Custom SPS", function()
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Auberon-Coding/Roblox-Scripts/main/IMPORTANT/Sps"))()
+
+end)
+
+
+
+local section1 = page:addSection("Extra!")
+
+section1:addToggle("Toggle Day/Night", nil, function()
+
+    print("Clicked")
+
+    if game:GetService("Lighting").ClockTime == 19 then
+
+        game:GetService("Lighting").ClockTime = 14
+
+    elseif game:GetService("Lighting").ClockTime == 14 then
+
+        game:GetService("Lighting").ClockTime = 19
+
+    end
+
+end)
+
+
+
+section1:addButton("Del Hud", function()
+
+    print("Clicked")
+
+    game:GetService("Players").LocalPlayer.PlayerGui.HUD:Destroy()
+
+end)
+
+
+
+section1:addButton("Del Rumble", function()
+
+    print("Clicked")
+
+    game.ReplicatedFirst.TourneyQ:Destroy()
+
+end)
+
+
+
+section1:addButton("Del Clouds", function()
+
+    game:GetService("Workspace").Clouds:Destroy()
+
+	for i,v in pairs(player.PlayerScripts:GetChildren()) do
+
+		if v.Name == "LocalScript" then
+
+			v:Destroy()
+
+		end
+
+	end
+
+end)
+
+
+
+section1:addButton("Del Fog", function()
+
+    game.Lighting.FogEnd = 1000000000
+
+    game.Lighting.Atmosphere:Destroy()
+
+end)
+
+
+
+section1:addButton("Tp In Rumble", function()
+
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1946, 453, -5349)
+
+end)
+
+
+
+section1:addButton("Lower Ping + High Fps", function()
+
+    loadstring(game:HttpGet("https://pastebin.com/raw/fyg6uPGC"))()
+
+end)
+
+
+
+section1:addButton("Anti Afk", function()
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Auberon-Coding/Roblox-Scripts/main/IMPORTANT/Anti-Afk"))()
+
+end)
+
+
+
+local page = venyx:addPage("Dropping", 5012544693)
+
+local section2 = page:addSection("Dropping!")
+
+section2:addButton("Drop Script", function()
+
+    print("Clicked")
+
+    loadstring(game:HttpGet("https://pastebin.com/raw/dTSv2gXK"))()
+
+end)
+
+
+
+local page = venyx:addPage("Misc", 5012544693)
+
+local section3 = page:addSection("Misc!")
+
+section3:addButton("Small", function()
+
+    print("Clicked")
+
+    for i,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetChildren()) do
+
+        if v:IsA("NumberValue") then
+
+            v:Destroy()
+
+        end
+
+    end
+
+end)
+
+
+
+section3:addButton("Anti Hit", function()
+
+    print("Clicked")
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MidnightScriptz/KaidoAntiH/main/loader", true))()
+
+end)
+
+
+
+section3:addButton("Strength Spy", function()
+
+    print("Clicked")
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Auberon-Coding/Roblox-Scripts/main/IMPORTANT/StrengthSpy", true))()
+
+end)
+
+
+
+section3:addButton("Loop", function()
+
+    print("Clicked")
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MidnightScriptz/KingKaidoLoop/main/loader", true))()
+
+end)
+
+
+
+section3:addButton("Rainbow Gloves", function()
+
+    loadstring(game:HttpGet("https://pastebin.com/raw/fYUdJZHZ"))()
+
+end)
+
+
+
+section3:addButton("FastPunch", function()
+
+    loadstring(game:HttpGet("https://pastebin.com/raw/Q3NLgMAh"))()
+
+end)
+
+
+
+local Premium = venyx:addPage("Premium", 5012544693)
+
+local PremiumS = Premium:addSection("Ways To Buy Premium")
+
+PremiumS:addButton("Through Here(Click Me)", function()
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Auberon-Coding/Roblox-Scripts/main/IMPORTANT/PremiumPurchase"))()
+
+end)
+
+PremiumS:addButton("My Discord", function()
+
+    setclipboard("https://discord.gg/PM6BDXEfBm")
+
+    wait(1)
+
+    game.StarterGui:SetCore(SendNotification{
+
+        Title = "Hi, ".. game.Players.LocalPlayer.Name .."!",
+
+        Text = "Paste The Link Into Your Browser",
+
+        Button1 = "OK",
+
+        Button2 = "Later",
+
+        Duration = 10
+
+    })
+
+end)
+
+
+
+local theme = venyx:addPage("Settings", 5012544693)
+
+local colors = theme:addSection("Toggle Key!")
+
+colors:addKeybind("Toggle Keybind", Enum.KeyCode.F, function()
+
+    print("Activated Keybind")
+
+    venyx:toggle()
+
+    end, function()
+
+    print("Changed Keybind")
+
+end)
+
+
+
+local page = venyx:addPage("Credits", 5012544693)
+
+local section4 = page:addSection("Credits!")
+
+section4:addButton("Made By - Auberon_Altas#5542 ", function()
+
+    print("CREDITS - Auberon_Altas#5542")
+
+end)
+
+
+
+game.Players.PlayerAdded:Connect(Joined())
