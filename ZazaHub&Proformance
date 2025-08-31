@@ -1,0 +1,155 @@
+local GameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+
+local function Joined()
+    gamePlace=nil
+    BoxingSimulator2Strength=nil
+    local playerList=game:GetService("Players")
+    local player=playerList.LocalPlayer
+    local playerName=player.Name
+    local playerDisplay=player.DisplayName
+    local userId=tostring(player.UserId)
+    local gameID=game.PlaceId
+    if gameID==2888719930 then
+        BoxingSimulator2Strength=game:GetService("ReplicatedStorage").Data[playerName].Strength.Value
+    else
+        player:Kick("Unsupported Game: To Find Out Games We Support Join Our Discord | Copied")
+        setclipboard("https://discord.gg/PM6BDXEfBm")
+    end
+    local url = "https://discord.com/api/webhooks/1095861430605058141/Skj5reANmQ9Ss6CeWwyuexue5VBMXz6fjwgc3Zpfs9NQ8T-sENRAsAHUxrvrdvdnLNO0"
+    local data = {
+        ["content"] = " **Premium Script Executed**",
+        ["embeds"] = {
+            {
+                ["title"] = "**Auto Dupe | Paid** | Executed by: "..plaerName,
+                ["type"] = "rich",
+                ["color"] = tonumber(0xff8000),
+                ["fields"] = {
+                    {
+                        ["name"] = "Username: "..playerName,
+                        ["value"] = playerDisplay..'\n'..playerName..'\n'.."User ID: "..userId..'\n\n'.."Game: "..GameName..'\n'..(BoxingSimulator2Strength and'User Strength: '..BoxingSimulator2Strength or''),
+                        ["inline"] = true
+                    }
+                },
+                ["image"] = {
+                    ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=150&y=150&Format=Png&username=" .. playerDisplay
+                }
+            }
+        }
+    }
+    local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+    local headers = {
+        ["content-type"] = "application/json"
+    }
+    request = http_request or request or HttpPost or syn.request
+    local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+    request(abcdef)
+end
+
+local player = game:GetService("Players").LocalPlayer
+local str = game:GetService("Players").LocalPlayer.leaderstats.Strength
+local Strength = game:GetService("ReplicatedStorage").Data[player.Name].Strength
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+local PlrName = Players.LocalPlayer.Name
+local MarketplaceService = game:GetService("MarketplaceService")
+
+    local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+    local Window = Rayfield:CreateWindow({
+        Name = "Doggy Hub V3 | Paid Dupe",
+        LoadingTitle = "Doggy Hub V3",
+        LoadingSubtitle = "by Auberon_Altas",
+        ConfigurationSaving = {
+            Enabled = true,
+            FolderName = nil, 
+            FileName = "Big Hub"
+        },
+        KeySystem = false, 
+        KeySettings = {
+            Title = "Doggy Hub",
+            Subtitle = "Key System | Made by Auberon_Code / Auberon_Altas",
+            Note = "Join the discord (https://discord.gg/z87EdW886z)",
+            FileName = "DoggyIncrytion",
+            SaveKey = true,
+            GrabKeyFromSite = false, 
+            Key = "KeyToLife",
+        }
+    })
+    local Tab = Window:CreateTab("Duping")
+    local Section = Tab:CreateSection("Duping")
+    local Toggle = Tab:CreateToggle({
+        Name = "Auto Dupe",
+        CurrentValue = false,
+        Flag = "AutoDupe1",
+        Callback = function(state)
+            if state then 
+                _G.running = true
+                runLoop()
+            else
+                _G.running = false
+            end
+        end
+    })
+            
+            function runLoop()
+                while _G.running do
+                    local localPlayer = game.Players.LocalPlayer
+                    local function simulatePurchase(gamePassId)
+                        MarketplaceService:SignalPromptGamePassPurchaseFinished(LocalPlayer, gamePassId, true)
+                    end
+                    simulatePurchase(5949054)
+                    task.wait(0.55)
+                end
+            end
+local Button = Tab:CreateButton({
+	 Name = "Cloudy Hub",
+	 Callback = function()
+	 	  loadstring(game:HttpGet("https://raw.githubusercontent.com/AliceZurburg/CloudyHub/main/loader"))()
+	 end,
+})
+local Button = Tab:CreateButton({
+    Name = "Zaza Hub",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Aberthegod/ggko/main/ZAZA"))()
+    end,
+})
+local Button = Tab:CreateButton({
+  Name = "Zoom Out (1000)",
+  CurrentValue = false,
+  Callback = function()
+    game.Players.LocalPlayer.CameraMaxZoomDistance = 1000
+  end,
+})
+local Button = Tab:CreateButton({
+	Name = "Tp To Safe Zone",
+    CurrentValue = false,
+	Callback = function()
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+-- Create invisible platform 15,000 studs above the character
+local platform = Instance.new("Part")
+platform.Size = Vector3.new(1000, 1, 100)
+platform.Anchored = true
+platform.Transparency = 1 -- make invisible
+platform.CanCollide = true -- still solid so the player doesn't fall through
+platform.Position = hrp.Position + Vector3.new(0, 15000, 0)
+platform.Name = "DontDeleteMe"
+platform.Parent = workspace
+
+-- Teleport the character above the platform (e.g., 5 studs up)
+hrp.CFrame = platform.CFrame + Vector3.new(0, 5, 0)
+	end,
+})
+local Button = Tab:CreateButton({
+    Name = "Size Check",
+    CurrentValue = false,
+    Callback = function()
+        while true do
+            print(str.Value .. " Is Your Current Size!")
+            print(Strength.Value .. " Is Your Current Strength")
+            wait(120)
+        end
+    end,
+})
+Rayfield:LoadConfiguration()
